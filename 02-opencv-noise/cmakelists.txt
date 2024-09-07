@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.10)
+project(noiseEdit)
+
+# Find OpenCV package
+find_package(OpenCV REQUIRED)
+
+# Add the executable
+add_executable(noiseEdit 02-opencv-noise.cpp)
+
+# Link OpenCV libraries
+target_link_libraries(noiseEdit PRIVATE ${OpenCV_LIBS})

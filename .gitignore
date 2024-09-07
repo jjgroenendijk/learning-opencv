@@ -1,2 +1,5 @@
 /.DS_Store
 /.vscode
+
+# Files from build folder
+*/build/*

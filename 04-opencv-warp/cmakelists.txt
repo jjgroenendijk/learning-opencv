@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.10)
+project(warp)
+
+# Find OpenCV package
+find_package(OpenCV REQUIRED)
+
+# Add the executable
+add_executable(warp 04-opencv-warp.cpp)
+
+# Link OpenCV libraries
+target_link_libraries(warp PRIVATE ${OpenCV_LIBS})

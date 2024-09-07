@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.10)
+project(noiseExtract)
+
+# Find OpenCV package
+find_package(OpenCV REQUIRED)
+
+# Add the executable
+add_executable(noiseExtract 03-opencv-noise-extract.cpp)
+
+# Link OpenCV libraries
+target_link_libraries(noiseExtract PRIVATE ${OpenCV_LIBS})

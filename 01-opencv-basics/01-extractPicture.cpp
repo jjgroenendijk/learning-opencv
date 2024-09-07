@@ -16,33 +16,34 @@ Value as gray value images.
 using namespace cv;
 using namespace std;
 
-int main (int argc, char **argv) {
+int main(int argc, char **argv)
+{
 
     cout << "OpenCV Version: " << CV_VERSION << endl;
 
     // check the number of arguments
-    if (argc != 2) {
+    if (argc != 2)
+    {
         cout << "Usage: " << argv[0] << " <image_path>" << endl;
         return -1;
     }
 
     // check if the file exists
-    if (! std::__fs::filesystem::exists(argv[1])) {
+    if (!std::__fs::filesystem::exists(argv[1]))
+    {
         cout << "File not found: " << argv[1] << endl;
         return -1;
-    }
-    else {
-        cout << "File found: " << argv[1] << endl;
     }
 
     // read the image
     Mat image = imread(argv[1]);
-    if (image.empty()) {
+    if (image.empty())
+    {
         cout << "Error opening image!" << endl;
         return -1;
     }
 
-// Split into Red, Green, and Blue channels
+    // Split into Red, Green, and Blue channels
     vector<Mat> rgbChannels(3);
     split(image, rgbChannels);
 
@@ -66,7 +67,5 @@ int main (int argc, char **argv) {
 
     waitKey(0);
 
-
     return 0;
-
 }

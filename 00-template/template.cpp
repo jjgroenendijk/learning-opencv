@@ -1,3 +1,12 @@
+/*
+
+    Template for OpenCV C++ programs
+    Close windows with ESC key
+    Make sure images are located in build folder
+    cmakelists.txt should be in the same folder as the source code
+
+*/
+
 #include <iostream>
 #include <filesystem>
 #include <opencv2/opencv.hpp>
@@ -7,39 +16,44 @@ using namespace cv;
 
 int main(int argc, char **argv)
 {
+
     cout << "OpenCV Version: " << CV_VERSION << endl;
 
-    // check the number of arguments
-    if (argc != 2)
+    // Read image
+    Mat image = imread("ballbar.bmp", IMREAD_GRAYSCALE);
+
+    // Create trackbars for fast value selection
+    namedWindow("Window Title Here");
+    int valueX = 0;
+    int valueXMax = 255;
+    int valueY = 0;
+    int valueYMax = 255;
+    createTrackbar("Value X", "Window Title Here", &valueX, valueXMax);
+    createTrackbar("Value Y", "Window Title Here", &valueY, valueYMax);
+
+    Mat destination;
+
+    while (true)
     {
-        cout << "Usage: " << argv[0] << " <image_path>" << endl;
-        return -1;
+        // Apply thingies here, using the trackbar values
+        threshold(image, destination, valueX, valueY, THRESH_BINARY_INV);
+
+        // Show the image
+        imshow("Window Title Here", destination);
+
+        // Press ESC to close the window
+        if (waitKey(30) == 27)
+        {
+            break;
+        }
     }
 
-    // check if the file exists
-    if (!std::__fs::filesystem::exists(argv[1]))
-    {
-        cout << "File not found: " << argv[1] << endl;
-        return -1;
-    }
+    // Print the optimal values
+    cout << "Optimal value X:" << valueX << endl;
+    cout << "Optimal value Y:" << valueY << endl;
 
-    // read the image
-    Mat image = imread(argv[1]);
-
-    // check if the image was opened successfully
-    if (image.empty())
-    {
-        cout << "Error opening image!" << endl;
-        return -1;
-    }
-
-
-
-    /*
-    
-        CODE GOES HERE
-    
-    */
+    // Close all windows
+    destroyAllWindows();
 
     return 0;
 }

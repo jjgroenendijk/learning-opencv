@@ -16,7 +16,7 @@ using namespace cv;
 
 int main(int argc, char **argv)
 {
-
+    // Print OpenCV version
     cout << "OpenCV Version: " << CV_VERSION << endl;
 
     // Read image
@@ -28,13 +28,18 @@ int main(int argc, char **argv)
     int valueXMax = 255;
     int valueY = 0;
     int valueYMax = 255;
-    createTrackbar("Value X", "Window Title Here", &valueX, valueXMax);
-    createTrackbar("Value Y", "Window Title Here", &valueY, valueYMax);
+    createTrackbar("Value X", "Window Title Here", NULL, valueXMax, NULL);
+    createTrackbar("Value Y", "Window Title Here", NULL, valueYMax, NULL);
 
+    // Create a destination image
     Mat destination;
 
     while (true)
     {
+        // Get trackbar values
+        valueX = getTrackbarPos("Value X", "Window Title Here");
+        valueY = getTrackbarPos("Value Y", "Window Title Here");
+
         // Apply thingies here, using the trackbar values
         threshold(image, destination, valueX, valueY, THRESH_BINARY_INV);
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(shapefind)
+project(blobfind)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 find_package(OpenCV REQUIRED)
 
 # Add the executable
-add_executable(shapefind shapefind.cpp)
+add_executable(blobfind blobfind.cpp)
 
 # Link OpenCV libraries
-target_link_libraries(shapefind PRIVATE ${OpenCV_LIBS})
+target_link_libraries(blobfind PRIVATE ${OpenCV_LIBS})
